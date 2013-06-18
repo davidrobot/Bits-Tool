@@ -1,0 +1,4 @@
+// Microsoft Developer Studio generated Help ID include file.
+// Used by Bits Tool.rc
+//
+#define HIDC_CHECK1                     0x806603e8    // IDD_BITSTOOL_DIALOG

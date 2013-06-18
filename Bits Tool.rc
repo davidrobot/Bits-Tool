@@ -1,0 +1,363 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Bits Tool.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 69
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 Bits Tool"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,11,20,20
+    LTEXT           "Bits Tool V 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2013 LT",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "http://davidrobot.com/2013/03/bits-tool.html",
+                    IDC_STATIC_LINK,40,38,178,12,NOT WS_VISIBLE
+END
+
+IDD_BITSTOOL_DIALOG DIALOGEX 0, 0, 372, 301
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Bits Tool"
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_HEX,236,222,121,12,ES_CENTER | ES_UPPERCASE | 
+                    ES_AUTOHSCROLL
+    LTEXT           "AXIS 1",IDC_STATIC_AXIS1,44,41,33,8
+    LTEXT           "( bit 0 )",IDC_STATIC_BIT0,76,41,38,8
+    CONTROL         "Check2",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,28,52,9,9
+    LTEXT           "AXIS 2",IDC_STATIC_AXIS2,44,52,33,8
+    LTEXT           "( bit 1 )",IDC_STATIC_BIT1,76,52,38,8
+    CONTROL         "Check3",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,63,9,9
+    LTEXT           "AXIS 3",IDC_STATIC_AXIS3,44,63,33,8
+    LTEXT           "( bit 2 )",IDC_STATIC_BIT2,76,63,38,8
+    CONTROL         "Check4",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,74,9,9
+    LTEXT           "AXIS 4",IDC_STATIC_AXIS4,44,74,33,8
+    LTEXT           "( bit 3 )",IDC_STATIC_BIT3,76,74,38,8
+    CONTROL         "Check5",IDC_CHECK5,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,85,9,9
+    LTEXT           "AXIS 5",IDC_STATIC_AXIS5,44,85,33,8
+    LTEXT           "( bit 4 )",IDC_STATIC_BIT4,76,85,38,8
+    CONTROL         "Check6",IDC_CHECK6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,96,9,9
+    LTEXT           "AXIS 6",IDC_STATIC_AXIS6,44,96,33,8
+    LTEXT           "( bit 5 )",IDC_STATIC_BIT5,76,96,38,8
+    CONTROL         "Check7",IDC_CHECK7,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,107,9,9
+    LTEXT           "AXIS 7",IDC_STATIC_AXIS7,44,107,33,8
+    LTEXT           "( bit 6 )",IDC_STATIC_BIT6,76,107,38,8
+    CONTROL         "Check8",IDC_CHECK8,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,118,9,9
+    LTEXT           "AXIS 8",IDC_STATIC_AXIS8,44,118,33,8
+    LTEXT           "( bit 7 )",IDC_STATIC_BIT7,76,118,38,8
+    CONTROL         "Check9",IDC_CHECK9,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,136,9,9
+    LTEXT           "AXIS 9",IDC_STATIC_AXIS9,44,136,33,8
+    LTEXT           "( bit 8 )",IDC_STATIC_BIT8,76,136,38,8
+    CONTROL         "Check10",IDC_CHECK10,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,148,9,9
+    LTEXT           "AXIS 10",IDC_STATIC_AXIS10,44,148,33,8
+    LTEXT           "( bit 9 )",IDC_STATIC_BIT9,76,148,38,8
+    CONTROL         "Check11",IDC_CHECK11,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,158,9,9
+    LTEXT           "AXIS 11",IDC_STATIC_AXIS11,44,158,33,8
+    LTEXT           "( bit 10)",IDC_STATIC_BIT10,76,158,38,8
+    CONTROL         "Check12",IDC_CHECK12,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,170,9,9
+    LTEXT           "AXIS 12",IDC_STATIC_AXIS12,44,170,33,8
+    LTEXT           "( bit 11)",IDC_STATIC_BIT11,76,170,38,8
+    CONTROL         "Check13",IDC_CHECK13,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,180,9,9
+    LTEXT           "AXIS 13",IDC_STATIC_AXIS13,44,180,33,8
+    LTEXT           "( bit 12)",IDC_STATIC_BIT12,76,180,38,8
+    CONTROL         "Check14",IDC_CHECK14,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,192,9,9
+    LTEXT           "AXIS 14",IDC_STATIC_AXIS14,44,192,33,8
+    LTEXT           "( bit 13)",IDC_STATIC_BIT13,76,192,38,8
+    CONTROL         "Check15",IDC_CHECK15,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,202,9,9
+    LTEXT           "AXIS 15",IDC_STATIC_AXIS15,44,202,33,8
+    LTEXT           "( bit 14)",IDC_STATIC_BIT14,76,202,38,8
+    CONTROL         "Check16",IDC_CHECK16,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,214,9,9
+    LTEXT           "AXIS 16",IDC_STATIC_AXIS16,44,214,33,8
+    LTEXT           "( bit 15)",IDC_STATIC_BIT15,76,214,38,8
+    CONTROL         "Check17",IDC_CHECK17,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,41,9,9
+    LTEXT           "AXIS 17",IDC_STATIC_AXIS17,148,41,33,8
+    LTEXT           "( bit 16)",IDC_STATIC_BIT16,180,41,38,8
+    CONTROL         "Check18",IDC_CHECK18,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,52,9,9
+    LTEXT           "AXIS 18",IDC_STATIC_AXIS18,148,52,33,8
+    LTEXT           "( bit 17)",IDC_STATIC_BIT17,180,52,38,8
+    CONTROL         "Check19",IDC_CHECK19,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,63,9,9
+    LTEXT           "AXIS 19",IDC_STATIC_AXIS19,148,63,33,8
+    LTEXT           "( bit 18)",IDC_STATIC_BIT18,180,63,38,8
+    CONTROL         "Check20",IDC_CHECK20,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,74,9,9
+    LTEXT           "AXIS 20",IDC_STATIC_AXIS20,148,74,33,8
+    LTEXT           "( bit 19)",IDC_STATIC_BIT19,180,74,38,8
+    CONTROL         "Check21",IDC_CHECK21,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,85,9,9
+    LTEXT           "AXIS 21",IDC_STATIC_AXIS21,148,85,33,8
+    LTEXT           "( bit 20)",IDC_STATIC_BIT20,180,85,38,8
+    CONTROL         "Check22",IDC_CHECK22,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,96,9,9
+    LTEXT           "AXIS 22",IDC_STATIC_AXIS22,148,96,33,8
+    LTEXT           "( bit 21)",IDC_STATIC_BIT21,180,96,38,8
+    CONTROL         "Check23",IDC_CHECK23,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,107,9,9
+    LTEXT           "AXIS 23",IDC_STATIC_AXIS23,148,107,33,8
+    LTEXT           "( bit 22)",IDC_STATIC_BIT22,180,107,38,8
+    CONTROL         "Check24",IDC_CHECK24,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,118,9,9
+    LTEXT           "AXIS 24",IDC_STATIC_AXIS24,148,118,33,8
+    LTEXT           "( bit 23)",IDC_STATIC_BIT23,180,118,38,8
+    CONTROL         "Check25",IDC_CHECK25,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,135,9,9
+    CONTROL         "AXIS 25",IDC_STATIC_AXIS25,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,135,33,9
+    LTEXT           "( bit 24)",IDC_STATIC_BIT24,180,135,38,8
+    CONTROL         "Check26",IDC_CHECK26,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,146,9,9
+    CONTROL         "AXIS 26",IDC_STATIC_AXIS26,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,146,33,9
+    LTEXT           "( bit 25)",IDC_STATIC_BIT25,180,146,38,8
+    CONTROL         "Check27",IDC_CHECK27,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,157,9,9
+    CONTROL         "AXIS 27",IDC_STATIC27,"Static",SS_LEFTNOWORDWRAP | NOT 
+                    WS_VISIBLE | WS_GROUP,148,157,33,9
+    LTEXT           "( bit 26)",IDC_STATIC_BIT26,180,157,38,8
+    CONTROL         "Check28",IDC_CHECK28,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,168,9,9
+    CONTROL         "AXIS 28",IDC_STATIC_AXIS28,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,168,33,9
+    LTEXT           "( bit 27)",IDC_STATIC_BIT27,180,168,38,8
+    CONTROL         "Check29",IDC_CHECK29,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,179,9,9
+    CONTROL         "AXIS 29",IDC_STATIC_AXIS29,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,179,33,9
+    LTEXT           "( bit 28)",IDC_STATIC_BIT28,180,179,38,8
+    CONTROL         "Check30",IDC_CHECK30,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,190,9,9
+    CONTROL         "AXIS 30",IDC_STATIC_AXIS30,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,190,33,9
+    LTEXT           "( bit 29)",IDC_STATIC_BIT29,180,190,38,8
+    CONTROL         "Check31",IDC_CHECK31,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,201,9,9
+    CONTROL         "AXIS 31",IDC_STATIC_AXIS31,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,201,33,9
+    LTEXT           "( bit 30)",IDC_STATIC_BIT30,180,201,38,8
+    CONTROL         "Check32",IDC_CHECK32,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,132,212,9,9
+    CONTROL         "AXIS 32",IDC_STATIC_AXIS32,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,212,33,9
+    LTEXT           "( bit 31)",IDC_STATIC_BIT31,180,213,38,8
+    PUSHBUTTON      "复位 &Reset",IDC_BUTTON_RESET,258,25,73,18
+    PUSHBUTTON      " 取反 &Invert",IDC_BUTTON_INVERT,258,55,73,18
+    GROUPBOX        "A1-16",IDC_STATIC,19,19,106,220
+    GROUPBOX        "A17-24",IDC_STATIC,124,19,106,220
+    LTEXT           "十六进制 HEX ( Max Length: 8 )",IDC_STATIC,236,209,122,
+                    8
+    LTEXT           "二进制 BIN ( Max Length: 32 )",IDC_STATIC,20,255,157,8
+    EDITTEXT        IDC_EDIT_BIN,19,269,153,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "十进制 DEC ( Max : 4294967295 ) ",IDC_STATIC,233,255,
+                    130,11,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_DEC,236,269,121,12,ES_CENTER | ES_UPPERCASE | 
+                    ES_AUTOHSCROLL | ES_NUMBER | NOT WS_VISIBLE
+    CONTROL         "Check33",IDC_CHECK33,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,111,126,9,9
+    CONTROL         "Check34",IDC_CHECK34,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,111,225,9,9
+    CONTROL         "Check35",IDC_CHECK35,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,217,126,9,9
+    CONTROL         "Check36",IDC_CHECK36,"Button",BS_AUTOCHECKBOX | NOT 
+                    WS_VISIBLE | WS_TABSTOP,217,225,9,9
+    CONTROL         "Check1",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,41,9,9
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Bits Tool Microsoft 基础类应用程序\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "Bits Tool\0"
+            VALUE "LegalCopyright", "版权所有 (C) 2013\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "Bits Tool.EXE\0"
+            VALUE "ProductName", "Bits Tool 应用程序\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+
+    IDD_BITSTOOL_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 365
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 294
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\robicon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 Bits Tool(&A)..."
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\Bits Tool.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
