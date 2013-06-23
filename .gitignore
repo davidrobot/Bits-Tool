@@ -5,3 +5,6 @@
 *.plg
 *.aps
 Thumbs.db
+*.opensdf
+*.suo
+*.sdf
