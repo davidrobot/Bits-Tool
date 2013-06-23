@@ -1,7 +1,7 @@
 /Debug
 /RELEASE
 *.ncb
-*.plg
 *.opt
+*.plg
 *.aps
 Thumbs.db
