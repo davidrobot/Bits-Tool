@@ -25,13 +25,12 @@ public:
 
 	bool bBit[32];
 	bool bAxis[32];
-
+	CLabel	m_bit[32];
+	CLabel	m_axis[25];
 
 // Dialog Data
 	//{{AFX_DATA(CBitsToolDlg)
 	enum { IDD = IDD_BITSTOOL_DIALOG };
-	CLabel	m_bit[32];
-	CLabel	m_axis[25];
 	CString	m_HEX;
 	CString	m_BIN;
 	//}}AFX_DATA

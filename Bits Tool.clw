@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CBitsToolApp
+LastClass=CBitsToolDlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "bits tool.h"
@@ -37,6 +37,7 @@ Type=0
 BaseClass=CDialog
 HeaderFile=Bits ToolDlg.h
 ImplementationFile=Bits ToolDlg.cpp
+LastObject=CBitsToolDlg
 
 [DLG:IDD_ABOUTBOX]
 Type=1

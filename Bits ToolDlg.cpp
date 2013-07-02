@@ -79,7 +79,6 @@ CBitsToolDlg::CBitsToolDlg(CWnd* pParent /*=NULL*/)
 void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CBitsToolDlg)
 	DDX_Control(pDX, IDC_STATIC_BIT0, m_bit[0]);
 	DDX_Control(pDX, IDC_STATIC_BIT1, m_bit[1]);
 	DDX_Control(pDX, IDC_STATIC_BIT2, m_bit[2]);
@@ -137,7 +136,7 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_STATIC_AXIS22, m_axis[22]);
 	DDX_Control(pDX, IDC_STATIC_AXIS23, m_axis[23]);
 	DDX_Control(pDX, IDC_STATIC_AXIS24, m_axis[24]);
-
+	//{{AFX_DATA_MAP(CBitsToolDlg)
 	DDX_Text(pDX, IDC_EDIT_HEX, m_HEX);
 	DDV_MaxChars(pDX, m_HEX, 8);
 	DDX_Text(pDX, IDC_EDIT_BIN, m_BIN);
