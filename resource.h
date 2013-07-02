@@ -7,6 +7,7 @@
 #define IDS_ABOUTBOX                    101
 #define IDD_BITSTOOL_DIALOG             102
 #define IDR_MAINFRAME                   128
+//
 #define IDC_CHECK1                      1000
 #define IDC_CHECK2                      1001
 #define IDC_CHECK3                      1002
@@ -39,22 +40,25 @@
 #define IDC_CHECK30                     1029
 #define IDC_CHECK31                     1030
 #define IDC_CHECK32                     1031
-#define IDC_BUTTON_RESET                1032
-#define IDC_BUTTON_INVERT               1033
-#define IDC_EDIT1                       1034
-#define IDC_EDIT_HEX                    1034
 #define IDC_CHECK33                     1035
 #define IDC_CHECK34                     1036
-#define IDC_EDIT2                       1037
+#define IDC_CHECK35                     1044
+#define IDC_CHECK36                     1045
+//
+#define IDC_BUTTON_RESET                1032
+#define IDC_BUTTON_INVERT               1033
+//
+#define IDC_EDIT_HEX                    1034
 #define IDC_EDIT_BIN                    1037
+//
 #define IDC_STATIC_AXIS1                1038
 #define IDC_STATIC_BIT0                 1039
 #define IDC_STATIC_AXIS2                1040
 #define IDC_STATIC_BIT1                 1041
 #define IDC_STATIC_AXIS3                1042
 #define IDC_STATIC_BIT2                 1043
-#define IDC_CHECK35                     1044
-#define IDC_CHECK36                     1045
+
+
 #define IDC_STATIC_AXIS4                1046
 #define IDC_STATIC_AXIS5                1047
 #define IDC_STATIC_AXIS6                1048

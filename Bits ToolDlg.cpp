@@ -79,6 +79,7 @@ CBitsToolDlg::CBitsToolDlg(CWnd* pParent /*=NULL*/)
 void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	
 	DDX_Control(pDX, IDC_STATIC_BIT0, m_bit[0]);
 	DDX_Control(pDX, IDC_STATIC_BIT1, m_bit[1]);
 	DDX_Control(pDX, IDC_STATIC_BIT2, m_bit[2]);
@@ -136,6 +137,7 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_STATIC_AXIS22, m_axis[22]);
 	DDX_Control(pDX, IDC_STATIC_AXIS23, m_axis[23]);
 	DDX_Control(pDX, IDC_STATIC_AXIS24, m_axis[24]);
+
 	//{{AFX_DATA_MAP(CBitsToolDlg)
 	DDX_Text(pDX, IDC_EDIT_HEX, m_HEX);
 	DDV_MaxChars(pDX, m_HEX, 8);
@@ -151,12 +153,15 @@ BEGIN_MESSAGE_MAP(CBitsToolDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON_RESET, OnButtonReset)
 	ON_BN_CLICKED(IDC_BUTTON_INVERT, OnButtonInvert)
+	//
 	ON_BN_CLICKED(IDC_CHECK33, OnCheck33)
 	ON_BN_CLICKED(IDC_CHECK34, OnCheck34)
 	ON_BN_CLICKED(IDC_CHECK35, OnCheck35)
 	ON_BN_CLICKED(IDC_CHECK36, OnCheck36)
+	//
 	ON_EN_CHANGE(IDC_EDIT_HEX, OnChangeEditHex)
 	ON_EN_CHANGE(IDC_EDIT_BIN, OnChangeEditBin)
+	//
 	ON_BN_CLICKED(IDC_CHECK1, OnCheck)
 	ON_BN_CLICKED(IDC_CHECK2, OnCheck)
 	ON_BN_CLICKED(IDC_CHECK3, OnCheck)
