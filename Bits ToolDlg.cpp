@@ -79,65 +79,19 @@ CBitsToolDlg::CBitsToolDlg(CWnd* pParent /*=NULL*/)
 void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+
+	// 一般化操作 DDX_Control(pDX,IDC_STATIC_BIT(0:31),m_bit(0:31))
+	for(int i=0;i<32;i++)
+	{
+		DDX_Control(pDX,IDC_STATIC_BIT0+i,m_bit[i]);
+	}
+
+	//一般化操作 DDX_Control(pDX,IDC_STATIC_AXIS(1:24),m_axis(1:24))
+	for(int j=1;j<25;j++)
+	{
+		DDX_Control(pDX,IDC_STATIC_AXIS1+j-1,m_axis[j]);
+	}
 	
-	DDX_Control(pDX, IDC_STATIC_BIT0, m_bit[0]);
-	DDX_Control(pDX, IDC_STATIC_BIT1, m_bit[1]);
-	DDX_Control(pDX, IDC_STATIC_BIT2, m_bit[2]);
-	DDX_Control(pDX, IDC_STATIC_BIT3, m_bit[3]);
-	DDX_Control(pDX, IDC_STATIC_BIT4, m_bit[4]);
-	DDX_Control(pDX, IDC_STATIC_BIT5, m_bit[5]);
-	DDX_Control(pDX, IDC_STATIC_BIT6, m_bit[6]);
-	DDX_Control(pDX, IDC_STATIC_BIT7, m_bit[7]);
-	DDX_Control(pDX, IDC_STATIC_BIT8, m_bit[8]);
-	DDX_Control(pDX, IDC_STATIC_BIT9, m_bit[9]);
-	DDX_Control(pDX, IDC_STATIC_BIT10, m_bit[10]);
-	DDX_Control(pDX, IDC_STATIC_BIT11, m_bit[11]);
-	DDX_Control(pDX, IDC_STATIC_BIT12, m_bit[12]);
-	DDX_Control(pDX, IDC_STATIC_BIT13, m_bit[13]);
-	DDX_Control(pDX, IDC_STATIC_BIT14, m_bit[14]);
-	DDX_Control(pDX, IDC_STATIC_BIT15, m_bit[15]);
-	DDX_Control(pDX, IDC_STATIC_BIT16, m_bit[16]);
-	DDX_Control(pDX, IDC_STATIC_BIT17, m_bit[17]);
-	DDX_Control(pDX, IDC_STATIC_BIT18, m_bit[18]);
-	DDX_Control(pDX, IDC_STATIC_BIT19, m_bit[19]);
-	DDX_Control(pDX, IDC_STATIC_BIT20, m_bit[20]);
-	DDX_Control(pDX, IDC_STATIC_BIT21, m_bit[21]);
-	DDX_Control(pDX, IDC_STATIC_BIT22, m_bit[22]);
-	DDX_Control(pDX, IDC_STATIC_BIT23, m_bit[23]);
-	DDX_Control(pDX, IDC_STATIC_BIT24, m_bit[24]);
-	DDX_Control(pDX, IDC_STATIC_BIT25, m_bit[25]);
-	DDX_Control(pDX, IDC_STATIC_BIT26, m_bit[26]);
-	DDX_Control(pDX, IDC_STATIC_BIT27, m_bit[27]);
-	DDX_Control(pDX, IDC_STATIC_BIT28, m_bit[28]);
-	DDX_Control(pDX, IDC_STATIC_BIT29, m_bit[29]);
-	DDX_Control(pDX, IDC_STATIC_BIT30, m_bit[30]);
-	DDX_Control(pDX, IDC_STATIC_BIT31, m_bit[31]);
-
-	DDX_Control(pDX, IDC_STATIC_AXIS1, m_axis[1]);
-	DDX_Control(pDX, IDC_STATIC_AXIS2, m_axis[2]);
-	DDX_Control(pDX, IDC_STATIC_AXIS3, m_axis[3]);
-	DDX_Control(pDX, IDC_STATIC_AXIS4, m_axis[4]);
-	DDX_Control(pDX, IDC_STATIC_AXIS5, m_axis[5]);
-	DDX_Control(pDX, IDC_STATIC_AXIS6, m_axis[6]);
-	DDX_Control(pDX, IDC_STATIC_AXIS7, m_axis[7]);
-	DDX_Control(pDX, IDC_STATIC_AXIS8, m_axis[8]);
-	DDX_Control(pDX, IDC_STATIC_AXIS9, m_axis[9]);
-	DDX_Control(pDX, IDC_STATIC_AXIS10, m_axis[10]);
-	DDX_Control(pDX, IDC_STATIC_AXIS11, m_axis[11]);
-	DDX_Control(pDX, IDC_STATIC_AXIS12, m_axis[12]);
-	DDX_Control(pDX, IDC_STATIC_AXIS13, m_axis[13]);
-	DDX_Control(pDX, IDC_STATIC_AXIS14, m_axis[14]);
-	DDX_Control(pDX, IDC_STATIC_AXIS15, m_axis[15]);
-	DDX_Control(pDX, IDC_STATIC_AXIS16, m_axis[16]);
-	DDX_Control(pDX, IDC_STATIC_AXIS17, m_axis[17]);
-	DDX_Control(pDX, IDC_STATIC_AXIS18, m_axis[18]);
-	DDX_Control(pDX, IDC_STATIC_AXIS19, m_axis[19]);
-	DDX_Control(pDX, IDC_STATIC_AXIS20, m_axis[20]);
-	DDX_Control(pDX, IDC_STATIC_AXIS21, m_axis[21]);
-	DDX_Control(pDX, IDC_STATIC_AXIS22, m_axis[22]);
-	DDX_Control(pDX, IDC_STATIC_AXIS23, m_axis[23]);
-	DDX_Control(pDX, IDC_STATIC_AXIS24, m_axis[24]);
-
 	//{{AFX_DATA_MAP(CBitsToolDlg)
 	DDX_Text(pDX, IDC_EDIT_HEX, m_HEX);
 	DDV_MaxChars(pDX, m_HEX, 8);
@@ -162,38 +116,9 @@ BEGIN_MESSAGE_MAP(CBitsToolDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT_HEX, OnChangeEditHex)
 	ON_EN_CHANGE(IDC_EDIT_BIN, OnChangeEditBin)
 	//
-	ON_BN_CLICKED(IDC_CHECK1, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK2, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK3, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK4, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK5, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK6, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK7, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK8, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK9, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK10, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK11, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK12, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK13, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK14, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK15, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK16, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK17, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK18, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK19, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK20, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK21, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK22, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK23, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK24, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK25, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK26, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK27, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK28, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK29, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK30, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK31, OnCheck)
-	ON_BN_CLICKED(IDC_CHECK32, OnCheck)
+	//使用 ON_CONTROL_RANGE 响应一组事件
+	ON_CONTROL_RANGE(BN_CLICKED,IDC_CHECK1,IDC_CHECK32,OnCheckRange)
+	//
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -561,7 +486,7 @@ void CBitsToolDlg::OnChangeEditBin()
 
 
 
-void CBitsToolDlg::OnCheck() 
+void CBitsToolDlg::OnCheckRange(UINT nID) 
 {
 	// TODO: Add your control notification handler code here
 	BitsMapBin();
