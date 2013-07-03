@@ -191,8 +191,8 @@ BEGIN
     LTEXT           "( bit 25)",IDC_STATIC_BIT25,180,146,38,8
     CONTROL         "Check27",IDC_CHECK27,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,132,157,9,9
-    CONTROL         "AXIS 27",IDC_STATIC27,"Static",SS_LEFTNOWORDWRAP | NOT 
-                    WS_VISIBLE | WS_GROUP,148,157,33,9
+    CONTROL         "AXIS 27",IDC_STATIC_AXIS27,"Static",SS_LEFTNOWORDWRAP | 
+                    NOT WS_VISIBLE | WS_GROUP,148,157,33,9
     LTEXT           "( bit 26)",IDC_STATIC_BIT26,180,157,38,8
     CONTROL         "Check28",IDC_CHECK28,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,132,168,9,9
