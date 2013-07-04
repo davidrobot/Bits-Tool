@@ -41,16 +41,16 @@
 #define IDC_CHECK31                     1030
 #define IDC_CHECK32                     1031
 //
-#define IDC_BUTTON_RESET                1032
-#define IDC_BUTTON_INVERT               1033
-#define IDC_EDIT_HEX                    1034
-#define IDC_EDIT_BIN                    1037
-#define IDC_EDIT_DEC                    1105
+#define IDC_CHECK33                     1032
+#define IDC_CHECK34                     1033
+#define IDC_CHECK35                     1034
+#define IDC_CHECK36                     1035
 //
-#define IDC_CHECK33                     1235
-#define IDC_CHECK34                     1236
-#define IDC_CHECK35                     1244
-#define IDC_CHECK36                     1245
+#define IDC_BUTTON_RESET                1232
+#define IDC_BUTTON_INVERT               1233
+#define IDC_EDIT_HEX                    1234
+#define IDC_EDIT_BIN                    1235
+#define IDC_EDIT_DEC                    1236
 //
 #define IDC_STATIC_AXIS1                1038
 #define IDC_STATIC_AXIS2                1039
