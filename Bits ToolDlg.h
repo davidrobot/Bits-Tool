@@ -63,6 +63,7 @@ protected:
 	afx_msg void OnCheck36();
 	afx_msg void OnChangeEditHex();
 	afx_msg void OnChangeEditBin();
+	//зЂвт UINT nID
 	afx_msg void OnCheckRange(UINT nID);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
