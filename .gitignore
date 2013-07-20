@@ -1,5 +1,5 @@
-/Debug
-/RELEASE
+Debug
+Release
 *.ncb
 *.opt
 *.plg
@@ -10,5 +10,4 @@ Thumbs.db
 *.suo
 *.sdf
 *.vcxproj.user
-*/Debug
-*/Release
+ipch
