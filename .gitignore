@@ -5,6 +5,9 @@
 *.plg
 *.aps
 Thumbs.db
+
 *.opensdf
 *.suo
 *.sdf
+*.vcxproj.user
+*/Debug
