@@ -17,4 +17,5 @@ Release
 *.suo
 *.sdf
 *.vcxproj.user
+*.vsp
 ipch
