@@ -1,7 +1,5 @@
 // Bits ToolDlg.cpp : implementation file
 //
-#include "CLabel\Label.h"
-#include "CHBDconv\HBDconv.h"
 #include "stdafx.h"
 #include "Bits Tool.h"
 #include "Bits ToolDlg.h"
