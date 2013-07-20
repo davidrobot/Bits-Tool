@@ -2,7 +2,7 @@
 
 Thumbs.db
 
-#for VC6
+# for VC6
 
 Debug
 Release
@@ -11,7 +11,7 @@ Release
 *.plg
 *.aps
 
-#for VC2010
+# for VC2010
 
 *.opensdf
 *.suo
