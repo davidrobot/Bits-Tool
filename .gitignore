@@ -1,10 +1,17 @@
+# for windows
+
+Thumbs.db
+
+#for VC6
+
 Debug
 Release
 *.ncb
 *.opt
 *.plg
 *.aps
-Thumbs.db
+
+#for VC2010
 
 *.opensdf
 *.suo
