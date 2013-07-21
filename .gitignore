@@ -19,3 +19,7 @@ Release
 *.vcxproj.user
 *.vsp
 ipch
+
+# for Qt
+
+*.pro.user
