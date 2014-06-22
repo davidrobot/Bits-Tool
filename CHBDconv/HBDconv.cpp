@@ -243,7 +243,7 @@ CString CHBDconv::BIN2DEC(CString sBIN_INPUT) // 二进制转化为十进制
 
 	for(int i=0; i!=sBIN_INPUT.GetLength(); ++i)
 	{
-		nTmp += atoi(sBIN_INPUT.Mid(i,1)) * pow(2,i);
+		nTmp += atoi(sBIN_INPUT.Mid(i,1)) * pow(2.0,i);
 	}
 
 	sDEC_OUTPUT.Format("%.0f",nTmp); 
