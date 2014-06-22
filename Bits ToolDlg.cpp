@@ -224,7 +224,6 @@ void CBitsToolDlg::OnButtonReset()
 	}
 
 	BitsMapBin();
-	m_BIN = "0" ;
 	UpdateData(FALSE); 
 	OnChangeEditBin();
 	
@@ -256,7 +255,7 @@ void CBitsToolDlg::OnButtonInvert()
 
 
 	BitsMapBin();
-	UpdateData(FALSE); 
+	UpdateData(FALSE);
 	OnChangeEditBin();
 
 
@@ -430,8 +429,16 @@ void CBitsToolDlg::BitsMapBin()  //将Bits与二进制字符串对应
 			}
 	}
 	s_Bits.MakeReverse();
-	m_BIN=s_Bits;
-	m_BIN.TrimLeft("0"); //05.30.13 Changed : 显示字符串消去左边的0
+	s_Bits.TrimLeft("0");
+
+	if (s_Bits.IsEmpty())
+	{
+		m_BIN = "0" ;
+	}
+	else
+	{
+		m_BIN=s_Bits;
+	}
 	up_bit_bk(); //更新bit背景颜色
 	up_axis_bk(); //更新axis背景颜色
 
@@ -440,28 +447,19 @@ void CBitsToolDlg::BitsMapBin()  //将Bits与二进制字符串对应
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-
 void CBitsToolDlg::OnChangeEditHex() 
 {
-	// TODO: If this is a RICHEDIT control, the control will not
-	// send this notification unless you override the CDialog::OnInitDialog()
-	// function and call CRichEditCtrl().SetEventMask()
-	// with the ENM_CHANGE flag ORed into the mask.
-	
-	// TODO: Add your control notification handler code here
-
-	CHBDconv m;
 
 	UpdateData(TRUE);       //获取控件的值
 
 	CString lastInput  = m_HEX.Mid((m_HEX.GetLength()-1),1); //获取输入
-	if (!  ('A' <= lastInput && lastInput <= 'F' || '0' <= lastInput && lastInput <= '9')) //判断输入是否十六进制
+	if (!  ("A" <= lastInput && lastInput <= "F" || "0" <= lastInput && lastInput <= "9" || lastInput == "")) //判断输入是否十六进制
 	{
 		AfxMessageBox(_T("Not HEX !"));
-		
 	}
 	else
 	{
+		CHBDconv m;
 		m_BIN=m.HEX2BIN(m_HEX);   //十六进制转二进制
 		m_DEC=m.HEX2DEC(m_HEX);  //十六进制转十进制
 		UpdateData(FALSE);      //更新控件的值
@@ -474,56 +472,37 @@ void CBitsToolDlg::OnChangeEditHex()
 
 void CBitsToolDlg::OnChangeEditBin() 
 {
-	// TODO: If this is a RICHEDIT control, the control will not
-	// send this notification unless you override the CDialog::OnInitDialog()
-	// function and call CRichEditCtrl().SetEventMask()
-	// with the ENM_CHANGE flag ORed into the mask.
-	
-	// TODO: Add your control notification handler code here
 
-	CHBDconv m;
-	
 	UpdateData(TRUE);       //获取控件的值
 
 	CString lastInput = m_BIN.Mid((m_BIN.GetLength()-1),1); //获取输入
-	if ( ! ( lastInput == '0' || lastInput == '1')) //判断输入是否二进制
+	if ( ! ( lastInput == "0" || lastInput == "1" || lastInput == "")) //判断输入是否二进制
 	{
 		AfxMessageBox(_T("Not BIN !"));
-
 	}
-
 	else
 	{
+		CHBDconv m;
 		m_HEX=m.BIN2HEX(m_BIN);   //二进制转十六进制
 		m_DEC=m.BIN2DEC(m_BIN); //二进制转十进制
 		UpdateData(FALSE);      //更新控件的值
 		BinMapBits();
 	}
-
 	
 }
 
 void CBitsToolDlg::OnChangeEditDec() 
 {
-	// TODO: If this is a RICHEDIT control, the control will not
-	// send this notification unless you override the CDialog::OnInitDialog()
-	// function and call CRichEditCtrl().SetEventMask()
-	// with the ENM_CHANGE flag ORed into the mask.
-	
-	// TODO: Add your control notification handler code here
-
-	CHBDconv m;
-	
 	UpdateData(TRUE);       //获取控件的值
 
 	CString lastInput  = m_DEC.Mid((m_DEC.GetLength()-1),1); //获取输入
-
-	if (atof (m_DEC) > 4294967295 )
+	if (!(atof (m_DEC) < 4294967295 || lastInput == ""))
 	{
 		AfxMessageBox(_T("Bigger than 4294967295 !"));
 	}
 	else
-	{	
+	{
+		CHBDconv m;
 		m_BIN=m.DEC2BIN(m_DEC);   //十进制转二进制
 		m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
 		UpdateData(FALSE);      //更新控件的值
