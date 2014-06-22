@@ -224,6 +224,7 @@ void CBitsToolDlg::OnButtonReset()
 	}
 
 	BitsMapBin();
+	m_BIN = "0" ;
 	UpdateData(FALSE); 
 	OnChangeEditBin();
 	
@@ -452,11 +453,20 @@ void CBitsToolDlg::OnChangeEditHex()
 	CHBDconv m;
 
 	UpdateData(TRUE);       //获取控件的值
-	m_BIN=m.HEX2BIN(m_HEX);   //十六进制转二进制
-	m_DEC=m.HEX2DEC(m_HEX);  //十六进制转十进制
-	UpdateData(FALSE);      //更新控件的值
-	BinMapBits();
 
+	CString lastInput  = m_HEX.Mid((m_HEX.GetLength()-1),1); //获取输入
+	if (!  ('A' <= lastInput && lastInput <= 'F' || '0' <= lastInput && lastInput <= '9')) //判断输入是否十六进制
+	{
+		AfxMessageBox(_T("Not HEX !"));
+		
+	}
+	else
+	{
+		m_BIN=m.HEX2BIN(m_HEX);   //十六进制转二进制
+		m_DEC=m.HEX2DEC(m_HEX);  //十六进制转十进制
+		UpdateData(FALSE);      //更新控件的值
+		BinMapBits();
+	}
 	
 }
 
@@ -474,13 +484,23 @@ void CBitsToolDlg::OnChangeEditBin()
 	CHBDconv m;
 	
 	UpdateData(TRUE);       //获取控件的值
-	m_HEX=m.BIN2HEX(m_BIN);   //二进制转十六进制
-	m_DEC=m.BIN2DEC(m_BIN); //二进制转十进制
-	UpdateData(FALSE);      //更新控件的值
-	BinMapBits();
 
+	CString lastInput = m_BIN.Mid((m_BIN.GetLength()-1),1); //获取输入
+	if ( ! ( lastInput == '0' || lastInput == '1')) //判断输入是否二进制
+	{
+		AfxMessageBox(_T("Not BIN !"));
 
+	}
 
+	else
+	{
+		m_HEX=m.BIN2HEX(m_BIN);   //二进制转十六进制
+		m_DEC=m.BIN2DEC(m_BIN); //二进制转十进制
+		UpdateData(FALSE);      //更新控件的值
+		BinMapBits();
+	}
+
+	
 }
 
 void CBitsToolDlg::OnChangeEditDec() 
@@ -495,12 +515,20 @@ void CBitsToolDlg::OnChangeEditDec()
 	CHBDconv m;
 	
 	UpdateData(TRUE);       //获取控件的值
-	m_BIN=m.DEC2BIN(m_DEC);   //十进制转二进制
-	m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
-	UpdateData(FALSE);      //更新控件的值
-	BinMapBits();
 
-	
+	CString lastInput  = m_DEC.Mid((m_DEC.GetLength()-1),1); //获取输入
+
+	if (atof (m_DEC) > 4294967295 )
+	{
+		AfxMessageBox(_T("Bigger than 4294967295 !"));
+	}
+	else
+	{	
+		m_BIN=m.DEC2BIN(m_DEC);   //十进制转二进制
+		m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
+		UpdateData(FALSE);      //更新控件的值
+		BinMapBits();
+	}
 }
 
 
