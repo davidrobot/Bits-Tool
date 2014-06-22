@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "HBDconv.h"
+#include <cmath>
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -207,5 +208,58 @@ CString CHBDconv::HEX2BIN(CString sHEX_INPUT)  //十六进制转换为二进制
 	
 	sBIN_OUTPUT.TrimLeft("0");     //消除左边的“0”
 	return sBIN_OUTPUT;
+}
+
+CString CHBDconv::DEC2BIN(CString sDEC_INPUT) // 十进制转化为二进制
+{ 
+	CString sBIN_OUTPUT(""), sTmp("");
+	int iNumerartor = atoi(sDEC_INPUT); // 将自字符串字面值转化为整形
+	int iQuotient(0), iRemainder(0); //商，余数
+	bool bStop(TRUE);
+	//将数除以2，每次的余数保留排列
+	while(bStop)
+	{
+		iQuotient = iNumerartor/2;
+		iRemainder = iNumerartor%2;
+		sTmp.Format("%d",iRemainder); //将余数保留
+		sBIN_OUTPUT += sTmp;
+		iNumerartor = iQuotient; // 把商赋给被除数
+		if (iQuotient == 0)
+		{
+			bStop = FALSE;
+		}
+	}
+	sBIN_OUTPUT.MakeReverse(); //翻转字符串顺序
+	return sBIN_OUTPUT;
+
+}
+
+CString CHBDconv::BIN2DEC(CString sBIN_INPUT) // 二进制转化为十进制
+{ 
+	//要从右到左用二进制的每个数去乘以2的相应次方
+	CString sDEC_OUTPUT("");
+	sBIN_INPUT.MakeReverse();
+	double nTmp(0);
+
+	for(int i=0; i!=sBIN_INPUT.GetLength(); ++i)
+	{
+		nTmp += atoi(sBIN_INPUT.Mid(i,1)) * pow(2,i);
+	}
+
+	sDEC_OUTPUT.Format("%.0f",nTmp); 
+	sDEC_OUTPUT.TrimLeft("0");
+	return sDEC_OUTPUT;
+	
+}
+
+CString CHBDconv::DEC2HEX(CString sDEC_INPUT) //十进制->二进制->十六进制
+{
+	return (BIN2HEX(DEC2BIN(sDEC_INPUT)));
+
+}
+
+CString CHBDconv::HEX2DEC(CString sHEX_INPUT) //十六进制->二进制->十进制
+{
+	return (BIN2DEC(HEX2BIN(sHEX_INPUT)));
 }
 

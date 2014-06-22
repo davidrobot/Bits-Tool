@@ -14,6 +14,10 @@ class CHBDconv
 public:
 	CString HEX2BIN(CString sHEX_INPUT);
 	CString BIN2HEX(CString sBIN_INPUT);
+	CString DEC2BIN(CString sDEC_INPUT);
+	CString BIN2DEC(CString sBIN_INPUT);
+	CString DEC2HEX(CString sDEC_INPUT);
+	CString HEX2DEC(CString sHEX_INPUT);
 	CHBDconv();
 	virtual ~CHBDconv();
 

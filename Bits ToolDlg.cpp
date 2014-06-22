@@ -69,6 +69,7 @@ CBitsToolDlg::CBitsToolDlg(CWnd* pParent /*=NULL*/)
 	//{{AFX_DATA_INIT(CBitsToolDlg)
 	m_HEX = _T("");
 	m_BIN = _T("");
+	m_DEC = _T("");
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
@@ -95,6 +96,8 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 	DDV_MaxChars(pDX, m_HEX, 8);
 	DDX_Text(pDX, IDC_EDIT_BIN, m_BIN);
 	DDV_MaxChars(pDX, m_BIN, 32);
+	DDX_Text(pDX, IDC_EDIT_DEC, m_DEC);
+	DDV_MaxChars(pDX, m_DEC, 10);
 	//}}AFX_DATA_MAP
 }
 
@@ -105,18 +108,14 @@ BEGIN_MESSAGE_MAP(CBitsToolDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON_RESET, OnButtonReset)
 	ON_BN_CLICKED(IDC_BUTTON_INVERT, OnButtonInvert)
-	//
 	ON_BN_CLICKED(IDC_CHECK33, OnCheck33)
 	ON_BN_CLICKED(IDC_CHECK34, OnCheck34)
 	ON_BN_CLICKED(IDC_CHECK35, OnCheck35)
 	ON_BN_CLICKED(IDC_CHECK36, OnCheck36)
-	//
 	ON_EN_CHANGE(IDC_EDIT_HEX, OnChangeEditHex)
 	ON_EN_CHANGE(IDC_EDIT_BIN, OnChangeEditBin)
-	//
-	//使用 ON_CONTROL_RANGE 响应一组事件
 	ON_CONTROL_RANGE(BN_CLICKED,IDC_CHECK1,IDC_CHECK32,OnCheckRange)
-	//
+	ON_EN_CHANGE(IDC_EDIT_DEC, OnChangeEditDec)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -454,6 +453,7 @@ void CBitsToolDlg::OnChangeEditHex()
 
 	UpdateData(TRUE);       //获取控件的值
 	m_BIN=m.HEX2BIN(m_HEX);   //十六进制转二进制
+	m_DEC=m.HEX2DEC(m_HEX);  //十六进制转十进制
 	UpdateData(FALSE);      //更新控件的值
 	BinMapBits();
 
@@ -474,12 +474,33 @@ void CBitsToolDlg::OnChangeEditBin()
 	CHBDconv m;
 	
 	UpdateData(TRUE);       //获取控件的值
-	m_HEX=m.BIN2HEX(m_BIN);   //十六进制转二进制
+	m_HEX=m.BIN2HEX(m_BIN);   //二进制转十六进制
+	m_DEC=m.BIN2DEC(m_BIN); //二进制转十进制
 	UpdateData(FALSE);      //更新控件的值
 	BinMapBits();
 
 
 
+}
+
+void CBitsToolDlg::OnChangeEditDec() 
+{
+	// TODO: If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialog::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+	
+	// TODO: Add your control notification handler code here
+
+	CHBDconv m;
+	
+	UpdateData(TRUE);       //获取控件的值
+	m_BIN=m.DEC2BIN(m_DEC);   //十进制转二进制
+	m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
+	UpdateData(FALSE);      //更新控件的值
+	BinMapBits();
+
+	
 }
 
 
@@ -551,3 +572,5 @@ BOOL CAboutDlg::OnInitDialog()
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
+
+
