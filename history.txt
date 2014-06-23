@@ -1,3 +1,4 @@
+06.23.14 Added: 增加十进制转化 
 07.03.13 Changed: 将资源和对象处理一般化，消息映射使用ON_CONTROL_RANGE 
 06.12.13 Changed: 将进制转换封装为CHBDconv类
 06.03.13 Added: 使用CLable类，设置CStatic控件背景颜色
