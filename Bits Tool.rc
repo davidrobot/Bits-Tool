@@ -230,8 +230,8 @@ BEGIN
     LTEXT           "二进制 BIN ( Max Length: 32 )",IDC_STATIC,20,255,157,8
     EDITTEXT        IDC_EDIT_BIN,19,269,153,12,ES_RIGHT | ES_AUTOHSCROLL | 
                     ES_NUMBER
-    LTEXT           "十进制 DEC ( Max : 4294967295 ) ",IDC_STATIC,233,255,
-                    130,11
+    LTEXT           "十进制 DEC ( Max: 4294967295 ) ",IDC_STATIC,233,255,130,
+                    11
     EDITTEXT        IDC_EDIT_DEC,236,269,121,12,ES_CENTER | ES_UPPERCASE | 
                     ES_AUTOHSCROLL | ES_NUMBER
     CONTROL         "Check33",IDC_CHECK33,"Button",BS_AUTOCHECKBOX | NOT 

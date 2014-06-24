@@ -92,7 +92,7 @@ CString CHBDconv::BIN2HEX(CString sBIN_INPUT)  //二进制转十六进制
 
 		}
 
-	for (iI=0;iI<NumBlocks;iI++)     //查表法转换16进制
+	for (iI=0;iI!=NumBlocks;++iI)     //查表法转换16进制
 		{
 			TempBin=FullBin.Mid(iI*4,4);
 				if (TempBin == "0000" )
@@ -151,7 +151,7 @@ CString CHBDconv::HEX2BIN(CString sHEX_INPUT)  //十六进制转换为二进制
 	intLen=sHEX_INPUT.GetLength();  //获取字符串长度
 
 
-	for (iI=0; iI<intLen; iI++) //查表法组合为二进制
+	for (iI=0; iI!=intLen; ++iI) //查表法组合为二进制
 	{
 		if (sHEX_INPUT[iI]=='0')
 			sBIN_OUTPUT=sBIN_OUTPUT+"0000";

@@ -80,13 +80,13 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 
 	// 一般化操作 DDX_Control(pDX,IDC_STATIC_BIT(0:31),m_bit(0:31))
-	for(int i=0;i<32;i++)
+	for(int i=0;i!=32;++i)
 	{
 		DDX_Control(pDX,IDC_STATIC_BIT0+i,m_bit[i]);
 	}
 
 	//一般化操作 DDX_Control(pDX,IDC_STATIC_AXIS(1:24),m_axis(1:24))
-	for(int j=1;j<25;j++)
+	for(int j=1;j!=25;++j)
 	{
 		DDX_Control(pDX,IDC_STATIC_AXIS1+j-1,m_axis[j]);
 	}
@@ -150,7 +150,7 @@ BOOL CBitsToolDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	
 	// TODO: Add extra initialization here
-	for(int i=0;i<32;i++)          //初始化状态
+	for(int i=0;i!=32;++i)          //初始化状态
 	{
 		bBit[i]=false;
 		bAxis[i]=false;
@@ -218,7 +218,7 @@ void CBitsToolDlg::OnButtonReset()
 
 	int i_IDC_CHECK=IDC_CHECK1; //从IDC_CHECK1 1000开始计数
 
-	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK36;i_IDC_CHECK++) ////计数到 IDC_CHECK36
+	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK36;++i_IDC_CHECK) ////计数到 IDC_CHECK36
 	{
 		((CButton*)GetDlgItem(i_IDC_CHECK))->SetCheck(FALSE);
 	}
@@ -237,7 +237,7 @@ void CBitsToolDlg::OnButtonInvert()
 
 	int i_IDC_CHECK=IDC_CHECK1;  //从IDC_CHECK1 1000开始计数
 
-	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK36;i_IDC_CHECK++) //计数到 IDC_CHECK36
+	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK36;++i_IDC_CHECK) //计数到 IDC_CHECK36
 	{
 
 		if (((CButton*)GetDlgItem(i_IDC_CHECK))->GetCheck()) // 如果状态是选中
@@ -269,7 +269,7 @@ void CBitsToolDlg::OnCheck33()
 
 	int i_IDC_CHECK=IDC_CHECK1;  //从IDC_CHECK1 1000开始计数
 
-	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK8;i_IDC_CHECK++) //计数到 IDC_CHECK8 
+	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK8;++i_IDC_CHECK) //计数到 IDC_CHECK8 
 	{
 
 		if (((CButton*)GetDlgItem(IDC_CHECK33))->GetCheck()) // 如果状态是选中
@@ -293,7 +293,7 @@ void CBitsToolDlg::OnCheck34()
 	
 	int i_IDC_CHECK=IDC_CHECK9;  //从IDC_CHECK9 1009开始计数
 
-	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK16;i_IDC_CHECK++)  //计数到 IDC_CHECK16
+	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK16;++i_IDC_CHECK)  //计数到 IDC_CHECK16
 	{
 
 		if (((CButton*)GetDlgItem(IDC_CHECK34))->GetCheck()) // 如果状态是选中
@@ -318,7 +318,7 @@ void CBitsToolDlg::OnCheck35()
 	
 	int i_IDC_CHECK=IDC_CHECK17;  //从IDC_CHECK1 1017开始计数
 
-	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK24;i_IDC_CHECK++) //计数到 IDC_CHECK24
+	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK24;++i_IDC_CHECK) //计数到 IDC_CHECK24
 	{
 
 		if (((CButton*)GetDlgItem(IDC_CHECK35))->GetCheck()) // 如果状态是选中
@@ -342,7 +342,7 @@ void CBitsToolDlg::OnCheck36()
 	
 	int i_IDC_CHECK=IDC_CHECK25;  //从IDC_CHECK1 1025开始计数
 
-	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK32;i_IDC_CHECK++)  //计数到 IDC_CHECK32
+	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK32;++i_IDC_CHECK)  //计数到 IDC_CHECK32
 	{
 
 		if (((CButton*)GetDlgItem(IDC_CHECK36))->GetCheck()) // 如果状态是选中
@@ -375,7 +375,7 @@ void CBitsToolDlg::BinMapBits()  //将二进制字符串与Bits对应
 	v_m_BIN=m_BIN;
 	v_m_BIN.MakeReverse();
 
-	for (iI=0; iI<intLen; iI++) //赋值已有的BIN对应的bits
+	for (iI=0; iI!=intLen; ++iI) //赋值已有的BIN对应的bits
 	{
 		if (v_m_BIN[iI]=='1')
 			{	((CButton*)GetDlgItem(i_IDC_CHECK+iI))->SetCheck(TRUE);
@@ -389,7 +389,7 @@ void CBitsToolDlg::BinMapBits()  //将二进制字符串与Bits对应
 			}
 	}
 
-	for (; iI<32;iI++)   //赋值剩余的BIN状态（为空）到对应的bits 
+	for (; iI!=32;++iI)   //赋值剩余的BIN状态（为空）到对应的bits 
 	{	
 		((CButton*)GetDlgItem(i_IDC_CHECK+iI))->SetCheck(FALSE);
 		bAxis[iI]=false;
@@ -412,7 +412,7 @@ void CBitsToolDlg::BitsMapBin()  //将Bits与二进制字符串对应
 	
 	s_Bits.Empty();
 
-	for (iI=0;iI<32;iI++)
+	for (iI=0;iI!=32;++iI)
 	{
 			if (((CButton*)GetDlgItem(i_IDC_CHECK+iI))->GetCheck()) // 如果状态是选中
 			{
@@ -527,7 +527,7 @@ void CBitsToolDlg::up_bit_bk()
 {
 	COLORREF   clr = RGB(0,255,0);  
 
-	for(int i=0;i<32;i++)
+	for(int i=0;i!=32;++i)
 	{
 		if (bBit[i]==true)
 		{
@@ -548,7 +548,7 @@ void CBitsToolDlg::up_axis_bk()
 {
 	COLORREF   clr = RGB(0,255,255);  
 
-	for(int i=1;i<25;i++)
+	for(int i=1;i!=25;++i)
 	{
 		if (bBit[i-1]==true)
 		{
