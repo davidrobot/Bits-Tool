@@ -364,7 +364,7 @@ void CBitsToolDlg::OnCheck36()
 
 void CBitsToolDlg::BinMapBits()  //将二进制字符串与Bits对应
 {
-	INT iI;
+	INT iI; // 不能声明在for语句中，注意C++中for的限定
 	INT intLen;
 	INT i_IDC_CHECK=1000;
 	CString v_m_BIN;
