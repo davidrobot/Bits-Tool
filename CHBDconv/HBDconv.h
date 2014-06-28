@@ -14,9 +14,9 @@ class CHBDconv
 public:
 	CString HEX2BIN(CString sHEX_INPUT);
 	CString BIN2HEX(CString sBIN_INPUT);
-	CString DEC2BIN(CString sDEC_INPUT);
-//	CString BIN2DEC(CString sBIN_INPUT);
-	bool Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned = true );
+//	CString DEC2BIN(CString sDEC_INPUT);
+	bool Dec2Bin(CString sDec_Input, CString &sBin_Output,bool bSigned = true);
+	bool Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned = true);
 
 };
 

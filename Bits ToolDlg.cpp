@@ -474,19 +474,17 @@ void CBitsToolDlg::OnChangeEditBin()
 
 	UpdateData(TRUE);       //获取控件的值
 
-	CString lastInput = m_BIN.Mid((m_BIN.GetLength()-1),1); //获取输入
-	if ( ! ( lastInput == "0" || lastInput == "1" || lastInput == "")) //判断输入是否二进制
-	{
-		AfxMessageBox(_T("Not BIN !"));
-	}
-	else
-	{
+
 		CHBDconv m;
 		m_HEX=m.BIN2HEX(m_BIN);   //二进制转十六进制
-		m.Bin2Dec(m_BIN,m_DEC,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()); //二进制转十进制
+		if(!m.Bin2Dec(m_BIN,m_DEC,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()))  //二进制转十进制
+		{
+			AfxMessageBox(_T("非法输入"));
+
+		}
 		UpdateData(FALSE);      //更新控件的值
 		BinMapBits();
-	}
+
 	
 }
 
@@ -494,19 +492,16 @@ void CBitsToolDlg::OnChangeEditDec()
 {
 	UpdateData(TRUE);       //获取控件的值
 
-	CString lastInput  = m_DEC.Mid((m_DEC.GetLength()-1),1); //获取输入
-	if (!(atof (m_DEC) < 4294967295 || lastInput == ""))
-	{
-		AfxMessageBox(_T("Bigger than 4294967295 !"));
-	}
-	else
-	{
 		CHBDconv m;
-		m_BIN=m.DEC2BIN(m_DEC);   //十进制转二进制
+		if(!m.Dec2Bin(m_DEC,m_BIN,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()))  //十进制转二进制
+		{
+			AfxMessageBox(_T("非法输入"));
+
+		}
 		//m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
 		UpdateData(FALSE);      //更新控件的值
 		BinMapBits();
-	}
+
 }
 
 

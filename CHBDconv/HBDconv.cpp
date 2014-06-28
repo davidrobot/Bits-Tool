@@ -4,7 +4,8 @@
 
 #include "stdafx.h"
 #include "HBDconv.h"
-#include <cmath>
+#include <CCTYPE>
+#include <CMATH>
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -187,65 +188,187 @@ CString CHBDconv::HEX2BIN(CString sHEX_INPUT)  //十六进制转换为二进制
 	}
 }
 
-CString CHBDconv::DEC2BIN(CString sDEC_INPUT) // 十进制转化为二进制
-{ 
-	CString sBIN_OUTPUT(""), sTmp("");
-	unsigned int iNumerartor = (unsigned int)atof(sDEC_INPUT); // 将自字符串字面值转化为整形，注意INT型的最大值
-	int iQuotient(0), iRemainder(0); //商，余数
-	bool bStop(TRUE);
-	//将数除以2，每次的余数保留排列
-	while(bStop)
-	{
-		iQuotient = iNumerartor/2;
-		iRemainder = iNumerartor%2;
-		sTmp.Format("%d",iRemainder); //将余数保留
-		sBIN_OUTPUT += sTmp;
-		iNumerartor = iQuotient; // 把商赋给被除数
-		if (iQuotient == 0)
-		{
-			bStop = FALSE;
-		}
-	}
-	sBIN_OUTPUT.MakeReverse(); //翻转字符串顺序
-	sBIN_OUTPUT.TrimLeft("0");
-	if(sBIN_OUTPUT.IsEmpty())
-	{
-		return "0";
-	}
-	else
-	{
-		return sBIN_OUTPUT;
-	}
-
-}
-
-// CString CHBDconv::BIN2DEC(CString sBIN_INPUT) // 二进制转化为十进制
+// CString CHBDconv::DEC2BIN(CString sDEC_INPUT) // 十进制转化为二进制
 // { 
-// 	//要从右到左用二进制的每个数去乘以2的相应次方
-// 	CString sDEC_OUTPUT("");
-// 	sBIN_INPUT.MakeReverse();
-// 	double nTmp(0);
-// 
-// 	for(int i=0; i!=sBIN_INPUT.GetLength(); ++i)
+// 	CString sBIN_OUTPUT(""), sTmp("");
+// 	unsigned int iNumerartor = (unsigned int)atof(sDEC_INPUT); // 将自字符串字面值转化为整形，注意INT型的最大值
+// 	int iQuotient(0), iRemainder(0); //商，余数
+// 	bool bStop(TRUE);
+// 	//将数除以2，每次的余数保留排列
+// 	while(bStop)
 // 	{
-// 		nTmp += atoi(sBIN_INPUT.Mid(i,1)) * pow(2.0,i); //注意pow()重载的问题
+// 		iQuotient = iNumerartor/2;
+// 		iRemainder = iNumerartor%2;
+// 		sTmp.Format("%d",iRemainder); //将余数保留
+// 		sBIN_OUTPUT += sTmp;
+// 		iNumerartor = iQuotient; // 把商赋给被除数
+// 		if (iQuotient == 0)
+// 		{
+// 			bStop = FALSE;
+// 		}
 // 	}
-// 
-// 	sDEC_OUTPUT.Format("%.0f",nTmp); 
-// 	sDEC_OUTPUT.TrimLeft("0");
-// 
-// 	if(sDEC_OUTPUT.IsEmpty())
+// 	sBIN_OUTPUT.MakeReverse(); //翻转字符串顺序
+// 	sBIN_OUTPUT.TrimLeft("0");
+// 	if(sBIN_OUTPUT.IsEmpty())
 // 	{
 // 		return "0";
 // 	}
 // 	else
 // 	{
-// 		return sDEC_OUTPUT;
+// 		return sBIN_OUTPUT;
 // 	}
-// 	
+// 
 // }
 
-bool CHBDconv::Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned )
+bool CHBDconv::Dec2Bin(CString sDec_Input, CString &sBin_Output, bool bSigned)
+{
+	//////////////////////////////////////////////////////////////////////////
+	//
+	// 将 十进制字面字符串 转换为 二进制字面字符串 
+	//
+	// bSigned 为 true 时，为带符号十进制，范围[-2147483648，2147483647]，默认
+	// bSigned 为 false 时，为无符号十进制，范围[0,4294967295], 可选
+	//
+	// 返回 true ，转换成功
+	// 返回 false ，转换失败
+	//
+	//////////////////////////////////////////////////////////////////////////
+
+	const int nBits = 32; // 32位，有效位数
+	const double nMin = 0 - pow(2.0,nBits-1); //   符号数最小  [-2147483648
+	const double nMax = pow(2.0,nBits-1) ;    //   符号数最大   2147483648)
+	const double nMaxU = 2*pow(2.0,nBits-1)-1;  // 无符号数最大  4294967295]
+
+	//如果不是数字 0~9 和 负号 -，返回false
+	for (int i=0; i!=sDec_Input.GetLength();++i)
+	{
+		if (!( isdigit(sDec_Input[i]) || sDec_Input.Mid(i,1) == "-"))
+		{
+			sBin_Output.Empty();
+			return false;
+		}
+
+	}
+
+	if (bSigned) // 有符号数
+	{
+		//超出数值范围 [-2147483648，2147483647] ，返回 false  
+		if( !( nMin<= atof(sDec_Input) && atof(sDec_Input) < nMax  ) )
+		{
+			sBin_Output.Empty();		
+			return false;
+		}
+
+	}else  // 无符号数
+	{
+		//超出数值范围 [0，4294967295] ，返回 false  
+		if( !( 0 <= atof(sDec_Input) && atof(sDec_Input) <= nMaxU ) )
+		{
+			sBin_Output.Empty();		
+			return false;
+		}
+		//如果第一个字符是 “-”，返回false
+		if (sDec_Input.Mid(0,1) == "-" )
+		{
+			sBin_Output.Empty();		
+			return false;
+		}
+	}
+
+	if (!bSigned) // 非符号数
+	{
+		unsigned int iNumerartor = (unsigned int)atof(sDec_Input); // 将自字符串字面值转化为整形，注意INT型的最大值
+		int iQuotient(0), iRemainder(0); //商，余数
+		bool bStop(TRUE);
+		CString sTmp;
+		sBin_Output.Empty();
+		//将数除以2，每次的余数保留排列
+		while(bStop)
+		{			
+			iQuotient = iNumerartor/2;
+			iRemainder = iNumerartor%2;
+			sTmp.Format("%d",iRemainder); //将余数保留
+			sBin_Output += sTmp;
+			iNumerartor = iQuotient; // 把商赋给被除数
+			if (iQuotient == 0)
+			{
+				bStop = FALSE;
+			}
+	 	}
+	 	sBin_Output.MakeReverse(); //翻转字符串顺序
+     	sBin_Output.TrimLeft("0");
+
+	}else //符号数
+	{
+		//有符号位 “-”
+		if (sDec_Input.Mid(0,1) == "-" )
+		{
+			if (!(sDec_Input.GetLength() == 1)) // 避免只有一个 “-”时卡死
+			{
+				sDec_Input.Delete(0,1); //将“-”剔除
+				unsigned int iNumerartor = (int) nMax - (unsigned int)atof(sDec_Input); // 将自字符串字面值转化为整形，注意INT型的最大值
+				int iQuotient(0), iRemainder(0); //商，余数
+				bool bStop(TRUE);
+				CString sTmp;
+				sBin_Output.Empty();
+				//将数除以2，每次的余数保留排列
+				while(bStop)
+				{			
+					iQuotient = iNumerartor/2;
+					iRemainder = iNumerartor%2;
+					sTmp.Format("%d",iRemainder); //将余数保留
+					sBin_Output += sTmp;
+					iNumerartor = iQuotient; // 把商赋给被除数
+					if (iQuotient == 0)
+					{
+						bStop = FALSE;
+					}
+				}
+				int nZero = nBits - sBin_Output.GetLength() -1 ; //需要补0的个数
+				for (int i=0;i!=nZero;++i)
+				{
+					sBin_Output = sBin_Output + "0";
+				}
+				sBin_Output = sBin_Output + "1" ;
+				sBin_Output.MakeReverse(); //翻转字符串顺序
+
+			}
+			else
+			{
+				sBin_Output.Empty();
+			}			
+			
+		}
+		else // 无符号位 “-”
+		{
+			unsigned int iNumerartor = (unsigned int)atof(sDec_Input); // 将自字符串字面值转化为整形，注意INT型的最大值
+			int iQuotient(0), iRemainder(0); //商，余数
+			bool bStop(TRUE);
+			CString sTmp;
+			sBin_Output.Empty();
+			//将数除以2，每次的余数保留排列
+			while(bStop)
+			{			
+				iQuotient = iNumerartor/2;
+				iRemainder = iNumerartor%2;
+				sTmp.Format("%d",iRemainder); //将余数保留
+				sBin_Output += sTmp;
+				iNumerartor = iQuotient; // 把商赋给被除数
+				if (iQuotient == 0)
+				{
+					bStop = FALSE;
+				}
+			}
+			sBin_Output.MakeReverse(); //翻转字符串顺序
+			sBin_Output.TrimLeft("0");
+
+		}		
+	}
+
+	return true;
+}
+
+bool CHBDconv::Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned)
 {  
 	//////////////////////////////////////////////////////////////////////////
 	//
@@ -254,8 +377,8 @@ bool CHBDconv::Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned )
 	// bSigned 为 true 时，为带符号十进制，范围[-2147483648，2147483647]，默认
 	// bSigned 为 false 时，为无符号十进制，范围[0,4294967295], 可选
 	//
-	// 返回 true ，转换成功，暂未实现
-	// 返回 false ，转换失败，暂未实现
+	// 返回 true ，转换成功
+	// 返回 false ，转换失败
 	//
 	//////////////////////////////////////////////////////////////////////////
 
@@ -265,7 +388,7 @@ bool CHBDconv::Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned )
 	double ResultUnsigned(0.0);
 
 	//如果位数超出， 返回 false
-	if (sBin_Input.GetLength() > nBits )  
+	if (sBin_Input.GetLength() > nBits )  // nBits 定为32 位
 	{ 
 		sDec_Output.Empty();
 		return false;
@@ -276,13 +399,16 @@ bool CHBDconv::Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned )
 	{
 
 		if (!(sBin_Input.Mid(i,1) == "0" || sBin_Input.Mid(i,1) =="1"))
+		{
+			sDec_Output.Empty();
 			return false;
+		}
 
 	}
 
 	if ( bSigned) //有符号数
 	{		
-		if (sBin_Input.GetLength()==nBits && sBin_Input.Mid(0,1) =="1" )  // nBits = 32位有符号数
+		if (sBin_Input.GetLength()==nBits && sBin_Input.Mid(0,1) =="1" )  // 有符号位
 		{ 			
 			sBin_Input.Delete(0,1);  //将符号位剔除	
 			sBin_Input.MakeReverse();			

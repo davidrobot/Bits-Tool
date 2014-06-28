@@ -233,7 +233,7 @@ BEGIN
     LTEXT           "十进制 DEC ( Max: 4294967295 ) ",IDC_STATIC,233,255,130,
                     11
     EDITTEXT        IDC_EDIT_DEC,236,269,121,12,ES_CENTER | ES_UPPERCASE | 
-                    ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+                    ES_AUTOHSCROLL
     CONTROL         "Check33",IDC_CHECK33,"Button",BS_AUTOCHECKBOX | NOT 
                     WS_VISIBLE | WS_TABSTOP,111,126,9,9
     CONTROL         "Check34",IDC_CHECK34,"Button",BS_AUTOCHECKBOX | NOT 
@@ -244,8 +244,8 @@ BEGIN
                     WS_VISIBLE | WS_TABSTOP,217,225,9,9
     CONTROL         "Check1",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,28,41,9,9
-    CONTROL         "Signed 有符号整数",IDC_CHECK_Signed,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,253,173,85,18
+    CONTROL         "Signed 有符号 32bits 整数",IDC_CHECK_Signed,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,240,173,115,18
 END
 
 
