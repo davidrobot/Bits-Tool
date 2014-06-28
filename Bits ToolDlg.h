@@ -27,6 +27,7 @@ public:
 	bool bAxis[32];
 	CLabel	m_bit[32];
 	CLabel	m_axis[25];
+	bool bSigned;
 
 // Dialog Data
 	//{{AFX_DATA(CBitsToolDlg)

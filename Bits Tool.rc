@@ -86,7 +86,7 @@ CAPTION "Bits Tool"
 FONT 9, "宋体"
 BEGIN
     EDITTEXT        IDC_EDIT_HEX,236,222,121,12,ES_CENTER | ES_UPPERCASE | 
-                    ES_AUTOHSCROLL
+                    ES_AUTOHSCROLL | NOT WS_VISIBLE
     LTEXT           "AXIS 1",IDC_STATIC_AXIS1,44,41,33,8
     LTEXT           "( bit 0 )",IDC_STATIC_BIT0,76,41,38,8
     CONTROL         "Check2",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
@@ -226,14 +226,14 @@ BEGIN
     GROUPBOX        "A1-16",IDC_STATIC,19,19,106,220
     GROUPBOX        "A17-24",IDC_STATIC,124,19,106,220
     LTEXT           "十六进制 HEX ( Max Length: 8 )",IDC_STATIC,236,209,122,
-                    8
+                    8,NOT WS_VISIBLE
     LTEXT           "二进制 BIN ( Max Length: 32 )",IDC_STATIC,20,255,157,8
     EDITTEXT        IDC_EDIT_BIN,19,269,153,12,ES_RIGHT | ES_AUTOHSCROLL | 
                     ES_NUMBER
     LTEXT           "十进制 DEC ( Max: 4294967295 ) ",IDC_STATIC,233,255,130,
                     11
     EDITTEXT        IDC_EDIT_DEC,236,269,121,12,ES_CENTER | ES_UPPERCASE | 
-                    ES_AUTOHSCROLL | ES_NUMBER
+                    ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
     CONTROL         "Check33",IDC_CHECK33,"Button",BS_AUTOCHECKBOX | NOT 
                     WS_VISIBLE | WS_TABSTOP,111,126,9,9
     CONTROL         "Check34",IDC_CHECK34,"Button",BS_AUTOCHECKBOX | NOT 
@@ -244,6 +244,8 @@ BEGIN
                     WS_VISIBLE | WS_TABSTOP,217,225,9,9
     CONTROL         "Check1",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,28,41,9,9
+    CONTROL         "Signed 有符号整数",IDC_CHECK_Signed,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,253,173,85,18
 END
 
 

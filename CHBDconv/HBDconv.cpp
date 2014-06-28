@@ -16,16 +16,6 @@ static char THIS_FILE[]=__FILE__;
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-CHBDconv::CHBDconv()
-{
-
-}
-
-CHBDconv::~CHBDconv()
-{
-
-}
-
 CString CHBDconv::BIN2HEX(CString sBIN_INPUT)  //二进制转十六进制
 { 
 	INT iI;
@@ -229,40 +219,104 @@ CString CHBDconv::DEC2BIN(CString sDEC_INPUT) // 十进制转化为二进制
 
 }
 
-CString CHBDconv::BIN2DEC(CString sBIN_INPUT) // 二进制转化为十进制
-{ 
-	//要从右到左用二进制的每个数去乘以2的相应次方
-	CString sDEC_OUTPUT("");
-	sBIN_INPUT.MakeReverse();
-	double nTmp(0);
+// CString CHBDconv::BIN2DEC(CString sBIN_INPUT) // 二进制转化为十进制
+// { 
+// 	//要从右到左用二进制的每个数去乘以2的相应次方
+// 	CString sDEC_OUTPUT("");
+// 	sBIN_INPUT.MakeReverse();
+// 	double nTmp(0);
+// 
+// 	for(int i=0; i!=sBIN_INPUT.GetLength(); ++i)
+// 	{
+// 		nTmp += atoi(sBIN_INPUT.Mid(i,1)) * pow(2.0,i); //注意pow()重载的问题
+// 	}
+// 
+// 	sDEC_OUTPUT.Format("%.0f",nTmp); 
+// 	sDEC_OUTPUT.TrimLeft("0");
+// 
+// 	if(sDEC_OUTPUT.IsEmpty())
+// 	{
+// 		return "0";
+// 	}
+// 	else
+// 	{
+// 		return sDEC_OUTPUT;
+// 	}
+// 	
+// }
 
-	for(int i=0; i!=sBIN_INPUT.GetLength(); ++i)
-	{
-		nTmp += atoi(sBIN_INPUT.Mid(i,1)) * pow(2.0,i); //注意pow()重载的问题
+bool CHBDconv::Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned )
+{  
+	//////////////////////////////////////////////////////////////////////////
+	//
+	// 将 二进制字面字符串 转换为 十进制字面字符串 
+	//
+	// bSigned 为 true 时，为带符号十进制，范围[-2147483648，2147483647]，默认
+	// bSigned 为 false 时，为无符号十进制，范围[0,4294967295], 可选
+	//
+	// 返回 true ，转换成功，暂未实现
+	// 返回 false ，转换失败，暂未实现
+	//
+	//////////////////////////////////////////////////////////////////////////
+
+	const int nBits = 32; // 32位，有效位数
+	const double nMax = pow(2.0,nBits-1);   // 2147483648)
+	double ResultSigned(0.0);
+	double ResultUnsigned(0.0);
+
+	//如果位数超出， 返回 false
+	if (sBin_Input.GetLength() > nBits )  
+	{ 
+		sDec_Output.Empty();
+		return false;
 	}
 
-	sDEC_OUTPUT.Format("%.0f",nTmp); 
-	sDEC_OUTPUT.TrimLeft("0");
+	//如果不是 0 或者 1 ，返回 false
+	for (int i=0;i!=sBin_Input.GetLength();++i) 
+	{
 
-	if(sDEC_OUTPUT.IsEmpty())
-	{
-		return "0";
+		if (!(sBin_Input.Mid(i,1) == "0" || sBin_Input.Mid(i,1) =="1"))
+			return false;
+
 	}
-	else
+
+	if ( bSigned) //有符号数
+	{		
+		if (sBin_Input.GetLength()==nBits && sBin_Input.Mid(0,1) =="1" )  // nBits = 32位有符号数
+		{ 			
+			sBin_Input.Delete(0,1);  //将符号位剔除	
+			sBin_Input.MakeReverse();			
+			for(int i=0; i!=sBin_Input.GetLength();++i)
+			{
+				ResultSigned += atoi(sBin_Input.Mid(i,1))*pow(2.0,i);
+			}
+			ResultSigned = nMax - ResultSigned;
+			sDec_Output.Format("%.0f",ResultSigned);
+			sDec_Output = "-" + sDec_Output;
+		}else //没有符号位
+		{
+			sBin_Input.MakeReverse();
+			for(int i=0; i!=sBin_Input.GetLength();++i)
+			{
+				ResultSigned += atoi(sBin_Input.Mid(i,1))*pow(2.0,i);
+			}
+			sDec_Output.Format("%.0f",ResultSigned);
+		}
+
+	}else       //无符号数
 	{
-		return sDEC_OUTPUT;
+		sBin_Input.MakeReverse();		
+		for(int i=0; i!=sBin_Input.GetLength();++i)
+		{
+			ResultUnsigned += atoi(sBin_Input.Mid(i,1))*pow(2.0,i);
+		}
+		sDec_Output.Format("%.0f",ResultUnsigned);
 	}
+
 	
-}
-
-CString CHBDconv::DEC2HEX(CString sDEC_INPUT) //十进制->二进制->十六进制
-{
-	return (BIN2HEX(DEC2BIN(sDEC_INPUT)));
+ 	return true;
 
 }
 
-CString CHBDconv::HEX2DEC(CString sHEX_INPUT) //十六进制->二进制->十进制
-{
-	return (BIN2DEC(HEX2BIN(sHEX_INPUT)));
-}
+
 

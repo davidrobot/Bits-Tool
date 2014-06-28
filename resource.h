@@ -7,7 +7,6 @@
 #define IDS_ABOUTBOX                    101
 #define IDD_BITSTOOL_DIALOG             102
 #define IDR_MAINFRAME                   128
-//
 #define IDC_CHECK1                      1000
 #define IDC_CHECK2                      1001
 #define IDC_CHECK3                      1002
@@ -40,18 +39,10 @@
 #define IDC_CHECK30                     1029
 #define IDC_CHECK31                     1030
 #define IDC_CHECK32                     1031
-//
 #define IDC_CHECK33                     1032
 #define IDC_CHECK34                     1033
 #define IDC_CHECK35                     1034
 #define IDC_CHECK36                     1035
-//
-#define IDC_BUTTON_RESET                1232
-#define IDC_BUTTON_INVERT               1233
-#define IDC_EDIT_HEX                    1234
-#define IDC_EDIT_BIN                    1235
-#define IDC_EDIT_DEC                    1236
-//
 #define IDC_STATIC_AXIS1                1038
 #define IDC_STATIC_AXIS2                1039
 #define IDC_STATIC_AXIS3                1040
@@ -84,7 +75,6 @@
 #define IDC_STATIC_AXIS30               1067
 #define IDC_STATIC_AXIS31               1068
 #define IDC_STATIC_AXIS32               1069
-//
 #define IDC_STATIC_BIT0                 1070
 #define IDC_STATIC_BIT1                 1071
 #define IDC_STATIC_BIT2                 1072
@@ -117,9 +107,13 @@
 #define IDC_STATIC_BIT29                1099
 #define IDC_STATIC_BIT30                1100
 #define IDC_STATIC_BIT31                1101
-//
-//
 #define IDC_STATIC_LINK                 1115
+#define IDC_CHECK_Signed                1116
+#define IDC_BUTTON_RESET                1232
+#define IDC_BUTTON_INVERT               1233
+#define IDC_EDIT_HEX                    1234
+#define IDC_EDIT_BIN                    1235
+#define IDC_EDIT_DEC                    1236
 
 // Next default values for new objects
 // 
@@ -127,7 +121,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1116
+#define _APS_NEXT_CONTROL_VALUE         1117
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

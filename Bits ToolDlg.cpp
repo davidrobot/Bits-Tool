@@ -97,7 +97,6 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_BIN, m_BIN);
 	DDV_MaxChars(pDX, m_BIN, 32);
 	DDX_Text(pDX, IDC_EDIT_DEC, m_DEC);
-	DDV_MaxChars(pDX, m_DEC, 10);
 	//}}AFX_DATA_MAP
 }
 
@@ -461,7 +460,7 @@ void CBitsToolDlg::OnChangeEditHex()
 	{
 		CHBDconv m;
 		m_BIN=m.HEX2BIN(m_HEX);   //十六进制转二进制
-		m_DEC=m.HEX2DEC(m_HEX);  //十六进制转十进制
+		//m_DEC=m.HEX2DEC(m_HEX);  //十六进制转十进制
 		UpdateData(FALSE);      //更新控件的值
 		BinMapBits();
 	}
@@ -484,7 +483,7 @@ void CBitsToolDlg::OnChangeEditBin()
 	{
 		CHBDconv m;
 		m_HEX=m.BIN2HEX(m_BIN);   //二进制转十六进制
-		m_DEC=m.BIN2DEC(m_BIN); //二进制转十进制
+		m.Bin2Dec(m_BIN,m_DEC,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()); //二进制转十进制
 		UpdateData(FALSE);      //更新控件的值
 		BinMapBits();
 	}
@@ -504,7 +503,7 @@ void CBitsToolDlg::OnChangeEditDec()
 	{
 		CHBDconv m;
 		m_BIN=m.DEC2BIN(m_DEC);   //十进制转二进制
-		m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
+		//m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
 		UpdateData(FALSE);      //更新控件的值
 		BinMapBits();
 	}
