@@ -95,7 +95,6 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_HEX, m_HEX);
 	DDV_MaxChars(pDX, m_HEX, 8);
 	DDX_Text(pDX, IDC_EDIT_BIN, m_BIN);
-	DDV_MaxChars(pDX, m_BIN, 32);
 	DDX_Text(pDX, IDC_EDIT_DEC, m_DEC);
 	//}}AFX_DATA_MAP
 }
@@ -115,6 +114,7 @@ BEGIN_MESSAGE_MAP(CBitsToolDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT_BIN, OnChangeEditBin)
 	ON_CONTROL_RANGE(BN_CLICKED,IDC_CHECK1,IDC_CHECK32,OnCheckRange)
 	ON_EN_CHANGE(IDC_EDIT_DEC, OnChangeEditDec)
+	ON_BN_CLICKED(IDC_CHECK_Signed, OnCHECKSigned)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -153,8 +153,9 @@ BOOL CBitsToolDlg::OnInitDialog()
 	{
 		bBit[i]=false;
 		bAxis[i]=false;
-	}
-	
+	}	
+	((CButton*)GetDlgItem(IDC_CHECK_Signed))->SetCheck(TRUE); 
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -575,3 +576,11 @@ BOOL CAboutDlg::OnInitDialog()
 }
 
 
+
+void CBitsToolDlg::OnCHECKSigned() 
+{
+	BitsMapBin();
+	UpdateData(FALSE); //更新控件的值
+	OnChangeEditBin();
+	
+}

@@ -67,6 +67,7 @@ protected:
 	afx_msg void OnChangeEditBin();
 	afx_msg void OnCheckRange(UINT nID);
 	afx_msg void OnChangeEditDec();
+	afx_msg void OnCHECKSigned();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
