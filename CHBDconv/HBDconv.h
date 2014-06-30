@@ -12,11 +12,14 @@
 class CHBDconv  
 {
 public:
-	CString HEX2BIN(CString sHEX_INPUT);
-	CString BIN2HEX(CString sBIN_INPUT);
-//	CString DEC2BIN(CString sDEC_INPUT);
-	bool Dec2Bin(CString sDec_Input, CString &sBin_Output,bool bSigned = true);
+	bool Hex2Bin(CString sHex_input, CString &sBin_Output);
+	bool Bin2Hex(CString sBin_Input, CString &sHex_Output);
+	bool Dec2Bin(CString sDec_Input, CString &sBin_Output, bool bSigned = true);
 	bool Bin2Dec(CString sBin_Input, CString &sDec_Output, bool bSigned = true);
+	//下面函数是组合而来
+	bool Hex2Dec(CString sHex_Input, CString &sDec_Output, bool bSigned = true);
+	bool Dec2Hex(CString sDec_Input, CString &sHex_Output, bool bSigned = true);
+	//
 
 };
 

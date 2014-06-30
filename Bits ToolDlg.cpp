@@ -5,6 +5,7 @@
 #include "Bits ToolDlg.h"
 
 
+#define ERROR_MESSAGE "非法输入"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -90,10 +91,9 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 	{
 		DDX_Control(pDX,IDC_STATIC_AXIS1+j-1,m_axis[j]);
 	}
-	
+
 	//{{AFX_DATA_MAP(CBitsToolDlg)
 	DDX_Text(pDX, IDC_EDIT_HEX, m_HEX);
-	DDV_MaxChars(pDX, m_HEX, 8);
 	DDX_Text(pDX, IDC_EDIT_BIN, m_BIN);
 	DDX_Text(pDX, IDC_EDIT_DEC, m_DEC);
 	//}}AFX_DATA_MAP
@@ -252,13 +252,9 @@ void CBitsToolDlg::OnButtonInvert()
 			
 		}
 	}
-
-
 	BitsMapBin();
 	UpdateData(FALSE);
 	OnChangeEditBin();
-
-
 }
 
 /////////////////////////////       群选的功能   （暂未使用）///////////////////////////
@@ -307,9 +303,7 @@ void CBitsToolDlg::OnCheck34()
 			((CButton*)GetDlgItem(i_IDC_CHECK))->SetCheck(FALSE);   //将状态设置为取消
 			
 		}
-	}
-	
-	
+	}	
 }
 
 void CBitsToolDlg::OnCheck35() 
@@ -323,41 +317,31 @@ void CBitsToolDlg::OnCheck35()
 
 		if (((CButton*)GetDlgItem(IDC_CHECK35))->GetCheck()) // 如果状态是选中
 		{
-
 			((CButton*)GetDlgItem(i_IDC_CHECK))->SetCheck(TRUE);  //将状态设置为选中
 		}
 		else
 		{
-			((CButton*)GetDlgItem(i_IDC_CHECK))->SetCheck(FALSE);   //将状态设置为取消
-			
+			((CButton*)GetDlgItem(i_IDC_CHECK))->SetCheck(FALSE);   //将状态设置为取消			
 		}
-	}
-	
-	
+	}	
 }
 
 void CBitsToolDlg::OnCheck36() 
 {
-	// TODO: Add your control notification handler code here
-	
+	// TODO: Add your control notification handler code here	
 	int i_IDC_CHECK=IDC_CHECK25;  //从IDC_CHECK1 1025开始计数
 
 	for (IDC_CHECK1;i_IDC_CHECK<=IDC_CHECK32;++i_IDC_CHECK)  //计数到 IDC_CHECK32
 	{
-
 		if (((CButton*)GetDlgItem(IDC_CHECK36))->GetCheck()) // 如果状态是选中
 		{
-
 			((CButton*)GetDlgItem(i_IDC_CHECK))->SetCheck(TRUE);  //将状态设置为选中
-
 		}
 		else
 		{
 			((CButton*)GetDlgItem(i_IDC_CHECK))->SetCheck(FALSE);   //将状态设置为取消
-			
 		}
 	}
-	
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -425,7 +409,6 @@ void CBitsToolDlg::BitsMapBin()  //将Bits与二进制字符串对应
 				s_Bits=s_Bits+"0";
 				bAxis[iI]=false;
 				bBit[iI]=false;
-
 			}
 	}
 	s_Bits.MakeReverse();
@@ -451,21 +434,21 @@ void CBitsToolDlg::OnChangeEditHex()
 {
 
 	UpdateData(TRUE);       //获取控件的值
+	CHBDconv m;
 
-	CString lastInput  = m_HEX.Mid((m_HEX.GetLength()-1),1); //获取输入
-	if (!  ("A" <= lastInput && lastInput <= "F" || "0" <= lastInput && lastInput <= "9" || lastInput == "")) //判断输入是否十六进制
+	if(!m.Hex2Bin(m_HEX,m_BIN)) //十六进制转二进制
 	{
-		AfxMessageBox(_T("Not HEX !"));
+		AfxMessageBox(_T(ERROR_MESSAGE));
 	}
 	else
 	{
-		CHBDconv m;
-		m_BIN=m.HEX2BIN(m_HEX);   //十六进制转二进制
-		//m_DEC=m.HEX2DEC(m_HEX);  //十六进制转十进制
-		UpdateData(FALSE);      //更新控件的值
-		BinMapBits();
+		if(!m.Hex2Dec(m_HEX,m_DEC,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck())) //十六进制转十进制
+		{
+			AfxMessageBox(_T(ERROR_MESSAGE));
+		}
 	}
-	
+	UpdateData(FALSE);      //更新控件的值
+	BinMapBits();
 }
 
 
@@ -474,47 +457,49 @@ void CBitsToolDlg::OnChangeEditBin()
 {
 
 	UpdateData(TRUE);       //获取控件的值
-
-
-		CHBDconv m;
-		m_HEX=m.BIN2HEX(m_BIN);   //二进制转十六进制
+	CHBDconv m;		
+	if(!m.Bin2Hex(m_BIN,m_HEX))  //二进制转十六进制
+	{
+		AfxMessageBox(_T(ERROR_MESSAGE));
+	}
+	else
+	{
 		if(!m.Bin2Dec(m_BIN,m_DEC,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()))  //二进制转十进制
 		{
-			AfxMessageBox(_T("非法输入"));
-
+			AfxMessageBox(_T(ERROR_MESSAGE));
 		}
-		UpdateData(FALSE);      //更新控件的值
-		BinMapBits();
-
-	
+	}
+	UpdateData(FALSE);      //更新控件的值
+	BinMapBits();	
 }
 
 void CBitsToolDlg::OnChangeEditDec() 
 {
 	UpdateData(TRUE);       //获取控件的值
 
-		CHBDconv m;
-		if(!m.Dec2Bin(m_DEC,m_BIN,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()))  //十进制转二进制
+	CHBDconv m;
+	if(!m.Dec2Bin(m_DEC,m_BIN,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()))  //十进制转二进制
+	{
+		AfxMessageBox(_T(ERROR_MESSAGE));
+	}
+	else
+	{
+		if(!m.Dec2Hex(m_DEC,m_HEX,((CButton*)GetDlgItem(IDC_CHECK_Signed))->GetCheck()))  //十进制转十六进制
 		{
-			AfxMessageBox(_T("非法输入"));
-
+			AfxMessageBox(_T(ERROR_MESSAGE));
 		}
-		//m_HEX=m.DEC2HEX(m_DEC); //十进制转十六进制
-		UpdateData(FALSE);      //更新控件的值
-		BinMapBits();
+	}
+	UpdateData(FALSE);      //更新控件的值
+	BinMapBits();
 
 }
 
-
-
 void CBitsToolDlg::OnCheckRange(UINT nID) 
 {
-	// TODO: Add your control notification handler code here
+
 	BitsMapBin();
 	UpdateData(FALSE); //更新控件的值
 	OnChangeEditBin();
-
-
 }
 
 /////////////////////////////// 更新背景颜色  ///////////////////////////////////
