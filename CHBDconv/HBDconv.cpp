@@ -146,8 +146,8 @@ bool CHBDconv::Bin2Hex(CString sBin_Input, CString &sHex_Output)
 				if (TempBin == "1111" )
 				{	sHex_Output = sHex_Output + "F"; }
 		}
-	sHex_Output.TrimLeft("0");
-
+	if (sHex_Output.IsEmpty())
+		sHex_Output = "0";
 
 	return true;
 }
@@ -227,7 +227,9 @@ bool CHBDconv::Hex2Bin(CString sHex_Input, CString &sBin_Output)
 		else if (sHex_Input[i]=='F')
 			sBin_Output=sBin_Output+"1111";
 	}	
-	sBin_Output.TrimLeft("0");     //消除左边的“0”
+	sBin_Output.TrimLeft("0");     //消除多余的“0”
+	if (sBin_Output.IsEmpty())
+		sBin_Output ="0";
 
 	return true;
 }
