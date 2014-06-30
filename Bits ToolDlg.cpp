@@ -569,3 +569,14 @@ void CBitsToolDlg::OnCHECKSigned()
 	OnChangeEditBin();
 	
 }
+
+
+BOOL CBitsToolDlg::PreTranslateMessage(MSG* pMsg)  // 防止按回车或ESC时窗口关闭
+{
+    if(pMsg->message==WM_KEYDOWN && pMsg->wParam==VK_ESCAPE)		
+        return TRUE; 	
+    if(pMsg->message==WM_KEYDOWN && pMsg->wParam==VK_RETURN)		
+        return TRUE; 	
+    else 		
+        return CDialog::PreTranslateMessage(pMsg);	
+}

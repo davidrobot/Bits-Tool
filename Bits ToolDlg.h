@@ -54,6 +54,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CBitsToolDlg)
 	virtual BOOL OnInitDialog();
+	virtual BOOL PreTranslateMessage(MSG* pMsg); // 防止按回车或ESC时窗口关闭
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
