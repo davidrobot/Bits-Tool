@@ -5,7 +5,7 @@
 #include "Bits ToolDlg.h"
 
 
-#define ERROR_MESSAGE "非法输入"
+#define ERROR_MESSAGE "超范围输入"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -356,6 +356,7 @@ void CBitsToolDlg::BinMapBits()  //将二进制字符串与Bits对应
 	UpdateData(TRUE);          //获取控件的值
 
 	intLen=m_BIN.GetLength();  //获取字符串长度
+	if (intLen > 32) intLen =32;  //防止 BIN 输入超过32个而导致溢出
 	v_m_BIN=m_BIN;
 	v_m_BIN.MakeReverse();
 
