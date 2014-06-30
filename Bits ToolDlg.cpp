@@ -5,7 +5,7 @@
 #include "Bits ToolDlg.h"
 
 
-#define ERROR_MESSAGE "超范围输入"
+#define ERROR_MESSAGE "非法输入"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -94,8 +94,11 @@ void CBitsToolDlg::DoDataExchange(CDataExchange* pDX)
 
 	//{{AFX_DATA_MAP(CBitsToolDlg)
 	DDX_Text(pDX, IDC_EDIT_HEX, m_HEX);
+	DDV_MaxChars(pDX, m_HEX, 8);
 	DDX_Text(pDX, IDC_EDIT_BIN, m_BIN);
+	DDV_MaxChars(pDX, m_BIN, 32);
 	DDX_Text(pDX, IDC_EDIT_DEC, m_DEC);
+	DDV_MaxChars(pDX, m_DEC, 11);
 	//}}AFX_DATA_MAP
 }
 

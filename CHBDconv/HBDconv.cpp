@@ -287,7 +287,7 @@ bool CHBDconv::Dec2Bin(CString sDec_Input, CString &sBin_Output, bool bSigned)
 		}
 	}
 
-	if (!bSigned) // 非符号数
+	if (!bSigned) ///////////////////////////////////非符号数///////////////////////////////////////	 
 	{
 		unsigned int iNumerartor = (unsigned int)atof(sDec_Input); // 将自字符串字面值转化为整形，注意INT型的最大值
 		int iQuotient(0), iRemainder(0); //商，余数
@@ -308,16 +308,18 @@ bool CHBDconv::Dec2Bin(CString sDec_Input, CString &sBin_Output, bool bSigned)
 			}
 	 	}
 	 	sBin_Output.MakeReverse(); //翻转字符串顺序
-     	sBin_Output.TrimLeft("0");
 
-	}else //符号数
+	}else //////////////////////////////////  符号数  ////////////////////////////////////////
 	{
-		//有符号位 “-”
+		//有负号 “-”
 		if (sDec_Input.Mid(0,1) == "-" )
 		{
-			if (!(sDec_Input.GetLength() == 1)) // 避免只有一个 “-”时卡死
+			sDec_Input.Delete(0,1); //将“-”剔除
+			sDec_Input.TrimLeft("0");
+
+			if (!(sDec_Input.IsEmpty())) // 如果不为空
 			{
-				sDec_Input.Delete(0,1); //将“-”剔除
+				
 				unsigned int iNumerartor = (int) nMax - (unsigned int)atof(sDec_Input); // 将自字符串字面值转化为整形，注意INT型的最大值
 				int iQuotient(0), iRemainder(0); //商，余数
 				bool bStop(TRUE);
@@ -347,11 +349,11 @@ bool CHBDconv::Dec2Bin(CString sDec_Input, CString &sBin_Output, bool bSigned)
 			}
 			else
 			{
-				sBin_Output.Empty();
+				sBin_Output="0";
 			}			
 			
 		}
-		else // 无符号位 “-”
+		else // 无负号 “-”
 		{
 			unsigned int iNumerartor = (unsigned int)atof(sDec_Input); // 将自字符串字面值转化为整形，注意INT型的最大值
 			int iQuotient(0), iRemainder(0); //商，余数
@@ -365,15 +367,13 @@ bool CHBDconv::Dec2Bin(CString sDec_Input, CString &sBin_Output, bool bSigned)
 				iRemainder = iNumerartor%2;
 				sTmp.Format("%d",iRemainder); //将余数保留
 				sBin_Output += sTmp;
-				iNumerartor = iQuotient; // 把商赋给被除数
+				iNumerartor = iQuotient;  // 把商赋给被除数
 				if (iQuotient == 0)
 				{
 					bStop = FALSE;
 				}
 			}
-			sBin_Output.MakeReverse(); //翻转字符串顺序
-			sBin_Output.TrimLeft("0");
-
+			sBin_Output.MakeReverse(); // 翻转字符串顺序
 		}		
 	}
 
