@@ -146,6 +146,7 @@ bool CHBDconv::Bin2Hex(CString sBin_Input, CString &sHex_Output)
 				if (TempBin == "1111" )
 				{	sHex_Output = sHex_Output + "F"; }
 		}
+	sHex_Output.TrimLeft("0");
 	if (sHex_Output.IsEmpty())
 		sHex_Output = "0";
 
