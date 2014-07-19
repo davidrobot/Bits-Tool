@@ -179,12 +179,12 @@ bool CHBDconv::Hex2Bin(CString sHex_Input, CString &sBin_Output)
 	}	
 		
 	////判断输入是否为十六进制，不是返回false
-	for (int i=0;i!=sHex_Input.GetLength();++i) 
+	for (int i1=0;i1!=sHex_Input.GetLength();++i1) 
 	{
 		
-		if  (! ('0' <= sHex_Input.GetAt(i) && sHex_Input.GetAt(i) <= '9' ||
-				'a' <= sHex_Input.GetAt(i) && sHex_Input.GetAt(i) <= 'f' ||
-				'A' <= sHex_Input.GetAt(i) && sHex_Input.GetAt(i) <= 'F')
+		if  (! ('0' <= sHex_Input.GetAt(i1) && sHex_Input.GetAt(i1) <= '9' ||
+				'a' <= sHex_Input.GetAt(i1) && sHex_Input.GetAt(i1) <= 'f' ||
+				'A' <= sHex_Input.GetAt(i1) && sHex_Input.GetAt(i1) <= 'F')
 			)
 		{
 			sBin_Output.Empty();
@@ -193,7 +193,7 @@ bool CHBDconv::Hex2Bin(CString sHex_Input, CString &sBin_Output)
 	}
 	
 
-	for ( i=0; i!=sHex_Input.GetLength(); ++i) //查表法组合为二进制
+	for (int i=0; i!=sHex_Input.GetLength(); ++i) //查表法组合为二进制
 	{
 		if (sHex_Input[i]=='0')
 			sBin_Output=sBin_Output+"0000";
